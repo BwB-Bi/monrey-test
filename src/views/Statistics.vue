@@ -1,11 +1,15 @@
 <template>
-<div>Statistic.vue</div>
+  <div>Statistic.vue
+    <Nav/>
+  </div>
 </template>
 
 <script lang="ts">
+
 export default {
-name: "Statistics"
-}
+  name: 'Statistics',
+
+};
 </script>
 
 <style lang="scss" scoped>
