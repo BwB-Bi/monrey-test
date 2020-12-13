@@ -1,6 +1,8 @@
 <template>
-  <div>Statistic.vue
-    <Nav/>
+  <div>
+   <Layout>
+     Statistic.vue
+   </Layout>
   </div>
 </template>
 
