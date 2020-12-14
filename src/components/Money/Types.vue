@@ -9,19 +9,12 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component, Prop} from 'vue-property-decorator';
 
-@Component({
-  props: {
-    propMessage: String
-  }
-})
-
+@Component
 export default class Types extends Vue {
   type = '-'; //'-'表示支出 '+‘表示收入
-
   selectType(type: string) {
-    const helloMsg = 'Hello, ' + this.propMessage;
     if (type !== '-' && type !== '+') {  //type只能是 '-' 或 '+'
       throw new Error('type is unknown');
     }
