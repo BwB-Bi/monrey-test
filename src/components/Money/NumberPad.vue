@@ -13,7 +13,7 @@
       <button @click="inputContent">7</button>
       <button @click="inputContent">8</button>
       <button @click="inputContent">9</button>
-      <button @cilck="ok" class="ok">OK</button>
+      <button @click="ok" class="ok">OK</button>
       <button class="zero" @click="inputContent">0</button>
       <button @click="inputContent">.</button>
     </div>
@@ -22,14 +22,15 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import {Component} from 'vue-property-decorator';
+import {Component,Prop} from 'vue-property-decorator';
 
 @Component
 export default class Types extends Vue {
-  output = '0';
+  @Prop() readonly value!: number;
+  output=this.value.toString();
   inputContent(event: MouseEvent) {  //鼠标事件
-    const button=event.target;
-    const input=button.textContent;
+    const button=(event.target as HTMLButtonElement);
+    const input=button.textContent!;
     if(this.output.length===16){return;}
     if(this.output==='0'){
       if('0123456789'.indexOf(input)>=0){
@@ -57,7 +58,7 @@ export default class Types extends Vue {
     this.output='0';
   }
   ok(){
-    console.log('ok');
+    this.$emit('update:value',this.output);
   }
 
 }
