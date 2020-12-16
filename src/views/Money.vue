@@ -15,11 +15,14 @@ import Types from '@/components/Money/Types.vue';
 import Notes from '@/components/Money/Notes.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component,Watch} from 'vue-property-decorator';
-import {model} from '@/model';
+import {recordListModel} from '@/models/recordListModel';
+import {tagListModel} from '@/models/tagListModel';
 
 window.localStorage.setItem('version','0.0.1');
 
- const recordList = model.fetch();
+ const recordList = recordListModel.fetch();
+
+ const tagList=tagListModel.fetch();
 
 type RecordItem = {
   tags: string[];
@@ -35,7 +38,7 @@ type RecordItem = {
 
 
 export default class Money extends Vue {
-  tags = ['衣', '食', '住', '行'];
+  tags = tagList;
   recordList: RecordItem[]=recordList;
   record: RecordItem={tags:[],notes:'',type:'-',amount:0};  //Record是record的类型
   onUpdateTags(value: string[]) {
@@ -53,7 +56,7 @@ export default class Money extends Vue {
   }
 @Watch('recordList')
     onRecordListChange(){
-     model.save(this.recordList);
+     recordListModel.save(this.recordList);
     }
 
 
