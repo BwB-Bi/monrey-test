@@ -32,7 +32,6 @@ export default class Editlabel extends Vue {
     const tags=tagListModel.data;
     const tag=tags.filter(t => t.id === id)[0];
     if(tag){
-      console.log(tag);
       this.tag=tag;
     }else{
       this.$router.replace('/404');
